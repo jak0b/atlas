@@ -1,0 +1,11 @@
+services:
+  h2o:
+    image: h2oai/h2o-open-source-k8s:3.40.0.4
+    restart: always
+  h2o-connector:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["python", "/app/test/connector.py"]
+    environment:
+      H2O_HOST: h2o
